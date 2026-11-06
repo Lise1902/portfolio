@@ -22,7 +22,7 @@ const PLACES = [
   { "id": "czechia", "name": "Czech Republic", "country": "Czech Republic", "flag": "🇨🇿", "coords": [ 14.4378, 50.0755 ], "kind": "travel", "photos": 3, "when": "Trip", "text": "Prague's bridges, towers and old town." },
   { "id": "puntacana", "name": "Dominican Republic", "country": "Dominican Republic", "flag": "🇩🇴", "coords": [ -68.3725, 18.5601 ], "kind": "travel", "photos": 5, "when": "Trip", "text": "Punta Cana's white sand beaches in the Caribbean." },
   { "id": "athens", "name": "Greece", "country": "Greece", "flag": "🇬🇷", "coords": [ 23.7275, 37.9838 ], "kind": "travel", "photos": 0, "when": "Trip", "text": "The Acropolis and the birthplace of democracy." },
-  { "id": "hongkong", "name": "Hong Kong", "country": "Hong Kong", "flag": "🇭🇰", "coords": [ 114.1694, 22.3193 ], "kind": "travel", "photos": 0, "when": "Trip", "text": "Skyscrapers, harbour lights and dim sum." },
+  { "id": "hongkong", "name": "Hong Kong", "country": "Hong Kong", "flag": "🇭🇰", "coords": [ 114.1694, 22.3193 ], "kind": "travel", "photos": 1, "when": "Trip", "text": "Skyscrapers, harbour lights and dim sum." },
   { "id": "hungary", "name": "Hungary", "country": "Hungary", "flag": "🇭🇺", "coords": [ 19.0402, 47.4979 ], "kind": "travel", "photos": 4, "when": "Trip", "text": "Budapest and the Danube by night." },
   { "id": "israel", "name": "Israel", "country": "Israel", "flag": "🇮🇱", "coords": [ 34.7818, 32.0853 ], "kind": "travel", "photos": 0, "when": "Trip", "text": "History, lively markets and Mediterranean beaches." },
   { "id": "rome", "name": "Italy", "country": "Italy", "flag": "🇮🇹", "coords": [ 12.4964, 41.9028 ], "kind": "travel", "photos": 1, "when": "Trip", "text": "Rome, the Eternal City: history on every corner." },
