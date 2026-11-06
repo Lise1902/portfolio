@@ -32,12 +32,12 @@ const PLACES = [
   { "id": "netherlands", "name": "Netherlands", "country": "Netherlands", "flag": "🇳🇱", "coords": [ 4.9041, 52.3676 ], "kind": "travel", "photos": 0, "when": "Trip", "text": "Canals, bikes and Amsterdam's narrow houses." },
   { "id": "portugal", "name": "Portugal", "country": "Portugal", "flag": "🇵🇹", "coords": [ -9.1393, 38.7223 ], "kind": "travel", "photos": 4, "when": "Trip", "text": "Ocean, light and colourful streets." },
   { "id": "grenadines", "name": "Saint Vincent & the Grenadines", "country": "Saint Vincent & the Grenadines", "flag": "🇻🇨", "coords": [ -61.24, 12.98 ], "kind": "travel", "photos": 4, "when": "Trip", "videos": 1, "text": "Turquoise water between the Caribbean islands." },
-  { "id": "seychelles", "name": "Seychelles", "country": "Seychelles", "flag": "🇸🇨", "coords": [ 55.492, -4.6796 ], "kind": "travel", "photos": 1, "when": "Trip", "text": "Granite beaches and crystal-clear water." },
+  { "id": "seychelles", "name": "Seychelles", "country": "Seychelles", "flag": "🇸🇨", "coords": [ 55.492, -4.6796 ], "kind": "travel", "photos": 0, "when": "Trip", "text": "Granite beaches and crystal-clear water." },
   { "id": "singapore", "name": "Singapore", "country": "Singapore", "flag": "🇸🇬", "coords": [ 103.8198, 1.3521 ], "kind": "travel", "photos": 1, "when": "Trip", "text": "A futuristic city where nature meets technology." },
   { "id": "switzerland", "name": "Switzerland", "country": "Switzerland", "flag": "🇨🇭", "coords": [ 7.4474, 46.948 ], "kind": "travel", "photos": 3, "when": "Trip", "text": "Mountains, lakes and fresh Alpine air." },
   { "id": "tanzania", "name": "Tanzania", "country": "Tanzania", "flag": "🇹🇿", "coords": [ 34.8888, -6.369 ], "kind": "travel", "photos": 0, "when": "Trip", "text": "Wild landscapes and unforgettable nature." },
   { "id": "thailand", "name": "Thailand", "country": "Thailand", "flag": "🇹🇭", "coords": [ 100.5018, 13.7563 ], "kind": "travel", "photos": 7, "when": "Trip", "videos": 1, "text": "Temples, islands and street food." },
-  { "id": "newyork", "name": "United States", "country": "United States", "flag": "🇺🇸", "coords": [ -74.006, 40.7128 ], "kind": "travel", "photos": 7, "when": "Trip", "text": "New York, the city that never sleeps: exploring Manhattan." }
+  { "id": "newyork", "name": "United States", "country": "United States", "flag": "🇺🇸", "coords": [ -74.006, 40.7128 ], "kind": "travel", "photos": 8, "when": "Trip", "text": "New York, the city that never sleeps: exploring Manhattan." }
 ];
 
 // ISO codes of countries to colour on the globe
