@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lise Bousquet | Portfolio</title>
+  <meta name="description" content="Lise Bousquet, MSc in Management student at Imperial College London. Tech, cybersecurity and cloud computing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=39">
+</head>
+<body class="locked">
+
+  <!-- =====================================================
+       SLIDE 1 — Login: me, sitting on the cloud
+       The visitor presses and holds the cloud to "log in".
+       ===================================================== -->
+  <section id="login" class="login">
+
+    <!-- top bar -->
+    <header class="topbar">
+      <span class="logo">LB<span class="logo-dot">.</span></span>
+      <span class="secure"><span class="secure-dot"></span>Secure connection · TLS 1.3</span>
+    </header>
+
+    <div class="login-inner">
+
+      <!-- left: who I am -->
+      <div class="intro">
+        <p class="kicker">Portfolio · 2026</p>
+        <h1 class="name">Lise BOUSQUET</h1>
+        <p class="role">MSc in Management student<br>at <strong>Imperial College London</strong></p>
+        <ul class="interests">
+          <li>Tech</li>
+          <li>Cybersecurity</li>
+          <li>Cloud Computing</li>
+        </ul>
+
+        <!-- THE CLOUD HANDSHAKE — authentication box -->
+        <div class="auth-card" id="auth-card" data-state="idle">
+          <!-- header -->
+          <div class="auth-top">
+            <p class="protocol">
+              <svg class="auth-lock" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path class="shackle" d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              SECURITY PROTOCOL 01
+            </p>
+          </div>
+
+          <h2 class="auth-title" id="auth-title">Ready to connect?</h2>
+          <p class="auth-text" id="auth-text"></p>
+
+          <!-- step 1: the big start button -->
+          <button type="button" class="handshake-btn" id="handshake-btn" aria-label="Initiate handshake: connect to my Cloud and enter the portfolio">
+            <span class="hb-icon" aria-hidden="true">
+              <!-- cloud with a "connect" arrow -->
+              <svg viewBox="0 0 24 24" width="26" height="26"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4 4 0 0 1-.5 8.5H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 15.5v-5m0 0-2.2 2.2M12 10.5l2.2 2.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="hb-text">
+              <b>INITIATE HANDSHAKE</b>
+              <small>Click to connect to my Cloud</small>
+            </span>
+            <!-- fingerprint in a moving circle: "scan to connect" -->
+            <span class="hb-print" aria-hidden="true">
+              <span class="hb-scan"></span>
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+                <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+                <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
+                <path d="M2 12a10 10 0 0 1 18-6"/>
+                <path d="M2 16h.01"/>
+                <path d="M21.8 16c.2-2 .131-5.354 0-6"/>
+                <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/>
+                <path d="M8.65 22c.21-.66.45-1.32.57-2"/>
+                <path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>
+              </svg>
+            </span>
+          </button>
+
+          <!-- step 2: the three stages -->
+          <ol class="steps" id="steps" aria-live="polite" hidden>
+            <li class="step"><span class="step-box" aria-hidden="true"></span><span>PING SENT…</span></li>
+            <li class="step"><span class="step-box" aria-hidden="true"></span><span>CONNECTION ESTABLISHED…</span></li>
+            <li class="step"><span class="step-box" aria-hidden="true"></span><span>IDENTITY VERIFIED…</span></li>
+          </ol>
+          <div class="progress" id="progress" hidden><span id="progress-fill"></span></div>
+
+          <!-- live status line -->
+          <p class="auth-wait" id="auth-wait">
+            <span class="auth-dot" aria-hidden="true"></span><span id="auth-sub">Awaiting incoming connection...</span>
+          </p>
+
+          <!-- technical footer -->
+          <div class="auth-meta">
+            <span>ENCRYPTION: <b>TLS 1.3</b></span>
+            <span>STATUS: <b id="auth-status">STANDBY</b></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: the illustration -->
+      <div class="art">
+        <svg id="cloud-scene" class="scene" viewBox="0 0 600 520"
+             role="img" aria-label="Cartoon of Lise sitting on a cloud with her laptop">
+          <defs>
+            <!-- shape of the cloud, reused 3 times -->
+            <g id="cloud-shape">
+              <circle cx="165" cy="370" r="80"/>
+              <circle cx="255" cy="312" r="108"/>
+              <circle cx="368" cy="322" r="96"/>
+              <circle cx="452" cy="376" r="72"/>
+              <ellipse cx="310" cy="410" rx="235" ry="58"/>
+            </g>
+            <linearGradient id="cloud-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FFFFFF"/>
+              <stop offset="1" stop-color="#D9EEFC"/>
+            </linearGradient>
+            <!-- this rectangle grows while the visitor holds: it "fills" the cloud -->
+            <clipPath id="fill-clip">
+              <rect id="fill-rect" x="60" y="190" width="0" height="300"/>
+            </clipPath>
+            <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- shadow on the "ground" -->
+          <ellipse class="ground-shadow" cx="310" cy="505" rx="190" ry="10" fill="#8CCDF2" opacity=".12"/>
+
+          <!-- light pulses around the cloud (during the handshake) -->
+          <g class="pulses" aria-hidden="true">
+            <ellipse class="pulse" cx="310" cy="335" rx="250" ry="140"/>
+            <ellipse class="pulse p2" cx="310" cy="335" rx="250" ry="140"/>
+          </g>
+
+          <g id="float" class="float">
+            <!-- glow behind the cloud (stronger during the handshake) -->
+            <use href="#cloud-shape" id="cloud-glow" class="cloud-glow" fill="#8CCDF2" filter="url(#glow)"/>
+            <!-- the cloud -->
+            <use href="#cloud-shape" fill="url(#cloud-grad)"/>
+            <!-- sky-blue fill that grows while holding -->
+            <use href="#cloud-shape" fill="#8CCDF2" opacity=".55" clip-path="url(#fill-clip)"/>
+
+            <!-- ===== Lise ===== -->
+            <!-- hair, back part: long and wavy -->
+            <path fill="#6B4428" d="M262 120 C255 68 345 68 338 120 C352 150 342 176 356 206 C368 234 350 252 362 272 C330 286 270 286 238 272 C250 252 232 234 244 206 C258 176 248 150 262 120 Z"/>
+
+            <!-- neck -->
+            <rect x="290" y="136" width="20" height="26" rx="7" fill="#E7B28C"/>
+
+            <!-- white shirt -->
+            <path d="M256 170 Q300 152 344 170 L354 266 L246 266 Z" fill="#FFFFFF" stroke="#C9DDF0" stroke-width="2"/>
+            <path d="M288 160 L300 186 L312 160 Z" fill="#E7B28C"/>
+            <path d="M284 160 L300 190 L316 160" fill="none" stroke="#C9DDF0" stroke-width="2"/>
+            <!-- heart necklace -->
+            <path d="M289 160 Q300 182 311 160" fill="none" stroke="#1A1A1A" stroke-width="1.4"/>
+            <path d="M300 187 l-5.5 -5.5 a3.2 3.2 0 0 1 5.5 -4 a3.2 3.2 0 0 1 5.5 4 z" fill="none" stroke="#D4A63C" stroke-width="2.2"/>
+
+            <!-- cloud puffs in front of the hips: she sits IN the cloud -->
+            <g fill="url(#cloud-grad)">
+              <circle cx="236" cy="276" r="30"/>
+              <circle cx="364" cy="278" r="30"/>
+            </g>
+
+            <!-- legs (dark jeans) + black ballet flats, swinging -->
+            <g class="leg leg-left">
+              <path d="M286 258 Q283 305 276 352" stroke="#3A4250" stroke-width="21" stroke-linecap="round" fill="none"/>
+              <ellipse cx="274" cy="358" rx="15" ry="8" fill="#111111"/>
+            </g>
+            <g class="leg leg-right">
+              <path d="M314 258 Q318 302 325 348" stroke="#3A4250" stroke-width="21" stroke-linecap="round" fill="none"/>
+              <ellipse cx="328" cy="354" rx="15" ry="8" fill="#111111"/>
+            </g>
+
+            <!-- laptop -->
+            <rect x="260" y="208" width="80" height="52" rx="6" fill="#173B60" stroke="#0B1930" stroke-width="3"/>
+            <path class="screen-cloud" d="M287 241 a8 8 0 0 1 3 -15 a11 11 0 0 1 20 1 a7 7 0 0 1 1 14 Z" fill="#8CCDF2"/>
+            <!-- check mark on the screen, shown once connected -->
+            <path class="screen-check" d="M287 234 L297 243 L314 224" stroke="#8CCDF2" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="248" y="258" width="104" height="9" rx="4.5" fill="#C7D6E6"/>
+
+            <!-- arms (white sleeves) + hands -->
+            <path d="M264 174 Q242 216 266 256" stroke="#C9DDF0" stroke-width="19" stroke-linecap="round" fill="none"/>
+            <path d="M264 174 Q242 216 266 256" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" fill="none"/>
+            <path d="M336 174 Q358 216 334 256" stroke="#C9DDF0" stroke-width="19" stroke-linecap="round" fill="none"/>
+            <path d="M336 174 Q358 216 334 256" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" fill="none"/>
+            <circle cx="270" cy="257" r="7.5" fill="#E7B28C"/>
+            <circle cx="330" cy="257" r="7.5" fill="#E7B28C"/>
+
+            <!-- head -->
+            <ellipse cx="300" cy="112" rx="31" ry="35" fill="#E7B28C"/>
+            <!-- gold hoop earrings -->
+            <circle cx="269" cy="128" r="4.5" fill="none" stroke="#D4A63C" stroke-width="2"/>
+            <circle cx="331" cy="128" r="4.5" fill="none" stroke="#D4A63C" stroke-width="2"/>
+            <!-- eyebrows -->
+            <path d="M280 103 Q288 98 296 102" stroke="#4A2E1A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+            <path d="M304 102 Q312 98 320 103" stroke="#4A2E1A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+            <!-- brown eyes, with a little eyeliner -->
+            <g class="eyes">
+              <ellipse cx="288" cy="114" rx="3.4" ry="4.2" fill="#3B2416"/>
+              <ellipse cx="312" cy="114" rx="3.4" ry="4.2" fill="#3B2416"/>
+              <circle cx="289.2" cy="112.6" r="1.1" fill="#FFFFFF"/>
+              <circle cx="313.2" cy="112.6" r="1.1" fill="#FFFFFF"/>
+              <path d="M283 111 Q288 108 294 111 L296 109" stroke="#1A1A1A" stroke-width="1.4" fill="none"/>
+              <path d="M306 111 Q312 108 317 111 L319 109" stroke="#1A1A1A" stroke-width="1.4" fill="none"/>
+            </g>
+            <!-- nose, cheeks, smile -->
+            <path d="M300 117 Q297 125 302 127" stroke="#C98C66" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <circle cx="281" cy="126" r="5" fill="#F09A9A" opacity=".3"/>
+            <circle cx="319" cy="126" r="5" fill="#F09A9A" opacity=".3"/>
+            <path d="M291 134 Q300 141 309 134" stroke="#B0584F" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+
+            <!-- hair, front: middle part + wavy strands framing the face -->
+            <path fill="#6B4428" d="M266 112 C262 70 338 70 334 112 C326 90 314 80 300 80 C286 80 274 90 266 112 Z"/>
+            <path fill="#7A4E2E" d="M300 78 C280 76 266 90 266 112 C262 135 270 150 260 175 C252 195 262 215 252 234 L270 238 C276 214 268 196 276 176 C284 156 276 132 282 112 C284 96 292 86 300 80 Z"/>
+            <path fill="#7A4E2E" d="M300 78 C320 76 334 90 334 112 C338 135 330 150 340 175 C348 195 338 215 348 234 L330 238 C324 214 332 196 324 176 C316 156 324 132 318 112 C316 96 308 86 300 80 Z"/>
+            <!-- light highlights in the hair -->
+            <g stroke="#D9AE76" stroke-width="3.2" fill="none" stroke-linecap="round" opacity=".85">
+              <path d="M273 118 C268 145 277 160 267 186 C261 202 268 216 261 230"/>
+              <path d="M327 118 C332 145 323 160 333 186 C339 202 332 216 339 230"/>
+              <path d="M290 84 C280 90 274 100 272 112"/>
+            </g>
+          </g>
+
+          <!-- small floating particles (during the handshake) -->
+          <g class="particles" aria-hidden="true">
+            <circle cx="120" cy="300" r="3"   style="--d:0s"/>
+            <circle cx="180" cy="230" r="2"   style="--d:.6s"/>
+            <circle cx="235" cy="200" r="2.5" style="--d:1.2s"/>
+            <circle cx="395" cy="215" r="2"   style="--d:.3s"/>
+            <circle cx="455" cy="270" r="3"   style="--d:.9s"/>
+            <circle cx="505" cy="330" r="2"   style="--d:1.5s"/>
+            <circle cx="90"  cy="380" r="2"   style="--d:1.1s"/>
+            <circle cx="530" cy="400" r="2.5" style="--d:.4s"/>
+            <circle cx="300" cy="40"  r="2"   style="--d:.7s"/>
+          </g>
+        </svg>
+
+        <p class="cloud-status" id="cloud-status" aria-hidden="true">
+          <span class="cs-dot"></span><span id="cloud-status-text">AWAITING CONNECTION</span>
+        </p>
+      </div>
+
+      <!-- animated line between the box and the cloud (drawn by script.js) -->
+      <svg class="link-layer" id="link-layer" aria-hidden="true">
+        <defs>
+          <filter id="fiber-glow" filterUnits="userSpaceOnUse" x="-3000" y="-3000" width="8000" height="8000">
+            <feGaussianBlur stdDeviation="4" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <path id="link-glow" class="link-glow"/>     <!-- soft halo -->
+        <path id="link-path" class="link-path" filter="url(#fiber-glow)"/>  <!-- the fiber -->
+        <path id="link-core" class="link-core"/>     <!-- bright white core -->
+        <path id="link-flow" class="link-flow"/>     <!-- moving light dashes -->
+        <path id="link-pulse" class="link-pulse" filter="url(#fiber-glow)"/>  <!-- long light pulses -->
+        <circle id="link-start" class="link-end" r="4"/>
+        <circle id="link-end" class="link-end" r="4"/>
+        <circle id="link-dot" class="link-dot" r="5" filter="url(#fiber-glow)"/>
+      </svg>
+    </div>
+
+    <!-- soft light that fills the screen when entering -->
+    <div class="light-burst" id="light-burst" aria-hidden="true"></div>
+  </section>
+
+  <!-- =====================================================
+       SUCCESS MODAL — centered on the screen
+       ===================================================== -->
+  <div class="modal-overlay" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <p class="modal-kicker"><span class="modal-dot" aria-hidden="true"></span>SYSTEM NOTIFICATION</p>
+
+      <div class="modal-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="72" height="72">
+          <path class="shield" d="M32 5 L54 13 V30 C54 45 44 55 32 59 C20 55 10 45 10 30 V13 Z"/>
+          <path class="shield-check" d="M22 32 L29 39 L43 24"/>
+        </svg>
+      </div>
+
+      <h2 class="modal-title" id="modal-title">ACCESS GRANTED</h2>
+      <p class="modal-sub">Welcome to Lise's Network!</p>
+
+      <button type="button" class="enter-btn" id="enter-btn">ENTER MY WORLD <span aria-hidden="true">↗</span></button>
+      <p class="modal-foot">SECURE CONNECTION · TLS 1.3</p>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       SLIDE 2 — coming next (we build it together)
+       ===================================================== -->
+  <main id="portfolio" class="portfolio" hidden>
+
+    <!-- top menu -->
+    <nav class="menu" aria-label="Main menu">
+      <a href="#about" class="menu-logo">LB<span>.</span></a>
+      <ul class="menu-links">
+        <li><a href="#about" data-nav="about"><span class="mn">1</span>My Personal Data</a></li>
+        <li><a href="#experience" data-nav="experience"><span class="mn">2</span>Professional Experiences</a></li>
+        <li><a href="#achievements" data-nav="achievements"><span class="mn">3</span>Achievements</a></li>
+        <li><a href="#skills" data-nav="skills"><span class="mn">4</span>My Superpowers</a></li>
+        <li><a href="#meet" data-nav="meet"><span class="mn">5</span>Meet Lise</a></li>
+        <li><a href="#contact" data-nav="contact"><span class="mn">6</span>Let's Connect</a></li>
+      </ul>
+    </nav>
+
+    <!-- Lise on her cloud travels down the right edge as you scroll (click her: next page) -->
+    <div class="lise-track" aria-hidden="true"><span id="lise-track-fill"></span></div>
+    <div class="lise-guide" id="lise-guide" role="button" tabindex="0" aria-label="Go to the next page">
+      <span class="guide-bubble" id="guide-bubble"></span>
+      <div class="guide-host"></div>
+    </div>
+
+    <!-- WELCOME TOUR: right after the handshake, Lise on her cloud greets the visitor,
+         shows the menu, then flies to her guide spot on the right -->
+    <div class="tour" id="tour" hidden>
+      <div class="tour-veil"></div>
+      <div class="tour-lise" id="tour-lise">
+        <p class="tour-bubble" aria-live="polite"><span id="tour-text"></span><small class="tour-hint">Click to continue ›</small></p>
+        <div class="tour-host"></div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         01 — MY PERSONAL DATA
+         ===================================================== -->
+    <section id="about" class="page" data-nav="about">
+      <p class="page-num">01</p>
+      <h2 class="page-title">My Personal Data</h2>
+
+      <!-- intro: full photo (never cropped) + my story in 3 steps -->
+      <div class="intro1">
+        <figure class="intro1-photo" id="intro1-photo">
+          <span class="intro1-frame" aria-hidden="true"></span>
+          <img src="images/web/profile.jpg" alt="Lise Bousquet in front of Imperial College London">
+        </figure>
+
+        <div class="intro1-text">
+          <p class="hi">Hi, I'm <span class="hi-name">Lise</span> <span class="hi-wave" aria-hidden="true">👋</span></p>
+          <p class="lead">MSc in Management student at <strong>Imperial College London</strong> and a <strong>tech enthusiast</strong>, with a strong interest in <strong>cybersecurity, cloud computing and the business of technology</strong>.</p>
+
+          <ol class="story">
+            <li class="story-step">
+              <span class="story-icon" aria-hidden="true">🌍</span>
+              <div><p class="story-label">WHERE I COME FROM</p>
+                <p>Raised between Paris, Dublin and Brussels, I've always enjoyed discovering new places, meeting different people and stepping outside my comfort zone.</p></div>
+            </li>
+            <li class="story-step">
+              <span class="story-icon" aria-hidden="true">🔐</span>
+              <div><p class="story-label">WHERE I'M GOING</p>
+                <p>My studies took me across three European cities: London, Madrid and Berlin. My first professional experiences opened the door to the world of cybersecurity. Somewhere along the way, I found the industry I want to grow in. My ambition is to build a career in cybersecurity, combining my interest in technology with my appetite for sales and customer relationships.</p></div>
+            </li>
+            <li class="story-step">
+              <span class="story-icon" aria-hidden="true">☁️</span>
+              <div><p class="story-label">WHAT I'M DOING NOW</p>
+                <p>Now, I'm exploring cloud computing, getting hands-on with AWS services, learning to work with AI agents and building this portfolio along the way!</p></div>
+            </li>
+          </ol>
+
+          <p class="about-welcome">Welcome to my digital portfolio! ✨</p>
+          <a class="scroll-cue" href="#edu">See my education <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+
+      <h3 class="sub-title" id="edu">Education</h3>
+
+      <!-- Education journey: one stop per year -->
+      <ol class="edu">
+        <li class="edu-stop">
+          <span class="edu-year">2023 – 2024</span>
+          <span class="edu-node" aria-hidden="true">1</span>
+          <div class="edu-card">
+            <img class="logo-img logo-img-escp" src="images/logos/escp.png" alt="ESCP Business School">
+            <h4>🇬🇧 London</h4>
+            <p>Bachelor in Management · Year 1</p>
+          </div>
+        </li>
+        <li class="edu-stop">
+          <span class="edu-year">2024 – 2025</span>
+          <span class="edu-node" aria-hidden="true">2</span>
+          <div class="edu-card">
+            <img class="logo-img logo-img-escp" src="images/logos/escp.png" alt="ESCP Business School">
+            <h4>🇪🇸 Madrid</h4>
+            <p>Bachelor in Management · Year 2</p>
+          </div>
+        </li>
+        <li class="edu-stop">
+          <span class="edu-year">2025 – 2026</span>
+          <span class="edu-node" aria-hidden="true">3</span>
+          <div class="edu-card">
+            <img class="logo-img logo-img-escp" src="images/logos/escp.png" alt="ESCP Business School">
+            <h4>🇩🇪 Berlin</h4>
+            <p>Bachelor in Management · Year 3</p>
+            <p class="edu-note">🎓 BSc graduate · Thesis: “Data: the new gold or the new Achilles' heel?”</p>
+          </div>
+        </li>
+        <li class="edu-stop edu-now">
+          <span class="edu-year">2026 – 2028</span>
+          <span class="edu-node" aria-hidden="true">4</span>
+          <div class="edu-card">
+            <span class="edu-badge">NOW</span>
+            <span class="imp-lockup" role="img" aria-label="Imperial College London">
+              <img class="imp-crest" src="images/logos/imperial-crest.png" alt="">
+              <span class="imp-words"><img class="imp-word" src="images/logos/imperial.png" alt=""><span class="imp-sub">College London</span></span>
+            </span>
+            <h4>🇬🇧 London</h4>
+            <p>MSc in Management (MiM)</p>
+            <p class="edu-note">Strategy, Big Data, AI &amp; ML · 🇸🇬 AI immersion in Singapore</p>
+          </div>
+        </li>
+      </ol>
+
+    </section>
+
+    <!-- =====================================================
+         02 — PROFESSIONAL EXPERIENCES (timeline + photos)
+         ===================================================== -->
+    <section id="experience" class="page page-exp" data-nav="experience">
+      <p class="page-num">02</p>
+      <h2 class="page-title">Professional Experiences</h2>
+      <p class="jr-sub">The experiences that shaped my professional path.</p>
+      <ol class="jr-list" id="jr-list"></ol>
+    </section>
+
+    <!-- =====================================================
+         03 — ACHIEVEMENTS (draft, to be developed together)
+         ===================================================== -->
+    <section id="achievements" class="page page-alt page-ach" data-nav="achievements">
+      <p class="page-num">03</p>
+      <h2 class="page-title">Achievements</h2>
+      <p class="ach-intro">What I have done to prepare for a career in tech.</p>
+      <div class="ach-grid">
+        <article class="ach">
+          <div class="ach-top"><span class="ach-logo"><img src="images/logos/google.png" alt="Google logo"></span><span class="ach-status">Certified</span></div>
+          <h3 class="ach-title">Google Cybersecurity Certificate</h3>
+          <p class="ach-org">Google · 2025</p>
+          <p class="ach-text">A professional programme covering the foundations of cybersecurity, from understanding threats to protecting an organisation.</p>
+          <p class="ach-label">WHAT I LEARNED</p>
+          <ul class="ach-list"><li>Threats, risks and their impact on organisations</li><li>How to protect networks, people and data</li><li>Python and SQL basics for security tasks</li><li>SIEM tools for security monitoring</li></ul>
+        </article>
+        <article class="ach">
+          <div class="ach-top"><span class="ach-logo"><img src="images/logos/aws.png" alt="Amazon Web Services logo"></span><span class="ach-status">Certified</span></div>
+          <h3 class="ach-title">AWS Cloud Quest: Cloud Practitioner</h3>
+          <p class="ach-org">Amazon Web Services · 2026</p>
+          <p class="ach-text">A hands-on, game-based training where you solve real cloud challenges using AWS services.</p>
+          <p class="ach-label">WHAT I LEARNED</p>
+          <ul class="ach-list"><li>Core AWS services such as Amazon S3 and Amazon EC2</li><li>AWS Global Infrastructure: Regions and Availability Zones</li><li>Scalability, high availability and fault tolerance</li><li>Hosting a static website on Amazon S3</li></ul>
+        </article>
+        <article class="ach">
+          <div class="ach-top"><span class="ach-logo"><img src="images/logos/claude.png" alt="Claude by Anthropic logo"></span><span class="ach-status">Completed</span></div>
+          <h3 class="ach-title">Claude 101</h3>
+          <p class="ach-org">Anthropic · 2026</p>
+          <p class="ach-text">An introduction to working with Claude, Anthropic's AI assistant, in everyday work.</p>
+          <p class="ach-label">WHAT I LEARNED</p>
+          <ul class="ach-list"><li>Writing clear prompts and giving the right context</li><li>Using AI to research, write and analyse</li><li>Working with AI responsibly</li></ul>
+        </article>
+        <article class="ach">
+          <div class="ach-top"><span class="ach-logo"><img src="images/logos/aws.png" alt="Amazon Web Services logo"></span><span class="ach-status">This website</span></div>
+          <h3 class="ach-title">AWS Hackathon Builder Challenge: Build Your Tech Superpowers</h3>
+          <p class="ach-org">Amazon Web Services · 2026</p>
+          <p class="ach-text">I took part in the AWS hackathon by designing, building and deploying this digital portfolio, piloting the AI agent Claude Code connected to AWS.</p>
+          <p class="ach-label">WHAT I LEARNED</p>
+          <ul class="ach-list"><li>Setting up the AWS Agent Toolkit and the AWS MCP Server</li><li>Guiding an AI agent from idea to a working website</li><li>Deploying a website on AWS</li><li>Delivering a project under a tight deadline</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         04 — MY SUPERPOWERS (interactive)
+         ===================================================== -->
+    <section id="skills" class="page page-skills" data-nav="skills">
+      <p class="page-num">04</p>
+      <h2 class="page-title">MY SUPERPOWERS</h2>
+      <p class="sk-hint"><span class="sk-hint-dot" aria-hidden="true"></span><span class="sk-hint-hand" aria-hidden="true">👆</span>Click on a module to explore my capabilities.</p>
+
+      <div class="sk-net" id="sk-net">
+        <span class="sk-col-label sk-col-left">SOFT SKILLS</span>
+        <span class="sk-col-label sk-col-right">TECHNICAL SKILLS</span>
+
+        <!-- cables + data particles (drawn by skills.js) -->
+        <svg class="sk-cables" id="sk-cables" aria-hidden="true"></svg>
+
+        <!-- me, in the middle -->
+        <div class="sk-avatar" aria-hidden="true">
+          <svg viewBox="150 20 300 400">
+            <defs>
+              <linearGradient id="sk-beam" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#8CCDF2" stop-opacity=".38"/><stop offset="1" stop-color="#8CCDF2" stop-opacity="0"/>
+              </linearGradient>
+              <radialGradient id="sk-disc" cx="50%" cy="45%" r="60%">
+                <stop offset="0" stop-color="#BDF0FF" stop-opacity=".85"/><stop offset=".45" stop-color="#3C88C0" stop-opacity=".75"/><stop offset="1" stop-color="#173B60"/>
+              </radialGradient>
+            </defs>
+
+            <!-- holographic light beam -->
+            <path class="sk-beam" d="M196 372 L236 70 L364 70 L404 372 Z" fill="url(#sk-beam)"/>
+
+            <!-- circular holographic platform (3D: side band + top disc + rings) -->
+            <ellipse cx="300" cy="388" rx="114" ry="26" fill="#0B1930" stroke="#8CCDF2" stroke-opacity=".45" stroke-width="1.5"/>
+            <rect x="186" y="372" width="228" height="16" fill="#123056"/>
+            <ellipse cx="300" cy="372" rx="114" ry="26" fill="url(#sk-disc)" stroke="#8CCDF2" stroke-width="2"/>
+            <g class="sk-rings" fill="none" stroke="#BDF0FF">
+              <ellipse class="sk-ring-dash" cx="300" cy="372" rx="100" ry="22" stroke-width="1.5" stroke-dasharray="5 7" opacity=".7"/>
+              <ellipse cx="300" cy="372" rx="76" ry="17" stroke-width="1.2" opacity=".55"/>
+              <ellipse cx="300" cy="372" rx="50" ry="11" stroke-width="1.2" opacity=".7"/>
+              <ellipse cx="300" cy="372" rx="24" ry="5" stroke-width="1" opacity=".9"/>
+            </g>
+            <!-- shadow under the feet -->
+            <ellipse cx="300" cy="369" rx="36" ry="6" fill="#0B1930" opacity=".45"/>
+
+            <!-- ===== Lise, standing ===== -->
+            <g class="sk-lise">
+              <path fill="#6B4428" d="M262 120 C255 68 345 68 338 120 C352 150 342 176 356 206 C368 234 350 252 362 272 C330 286 270 286 238 272 C250 252 232 234 244 206 C258 176 248 150 262 120 Z"/>
+              <!-- legs (dark jeans) + black ballet flats -->
+              <path d="M288 258 L285 354" stroke="#3A4250" stroke-width="22" stroke-linecap="round"/>
+              <path d="M312 258 L315 354" stroke="#3A4250" stroke-width="22" stroke-linecap="round"/>
+              <ellipse cx="282" cy="362" rx="14" ry="7" fill="#111111"/>
+              <ellipse cx="318" cy="362" rx="14" ry="7" fill="#111111"/>
+              <rect x="290" y="136" width="20" height="26" rx="7" fill="#E7B28C"/>
+              <!-- white shirt -->
+              <path d="M256 170 Q300 152 344 170 L352 272 L248 272 Z" fill="#FFFFFF" stroke="#C9DDF0" stroke-width="2"/>
+              <path d="M288 160 L300 186 L312 160 Z" fill="#E7B28C"/>
+              <path d="M284 160 L300 190 L316 160" fill="none" stroke="#C9DDF0" stroke-width="2"/>
+              <path d="M289 160 Q300 182 311 160" fill="none" stroke="#1A1A1A" stroke-width="1.4"/>
+              <path d="M300 187 l-5.5 -5.5 a3.2 3.2 0 0 1 5.5 -4 a3.2 3.2 0 0 1 5.5 4 z" fill="none" stroke="#D4A63C" stroke-width="2.2"/>
+              <!-- arms relaxed along the body -->
+              <path d="M262 176 Q246 214 252 250" stroke="#C9DDF0" stroke-width="19" stroke-linecap="round" fill="none"/>
+              <path d="M262 176 Q246 214 252 250" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M338 176 Q354 214 348 250" stroke="#C9DDF0" stroke-width="19" stroke-linecap="round" fill="none"/>
+              <path d="M338 176 Q354 214 348 250" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <circle cx="252" cy="255" r="7.5" fill="#E7B28C"/><circle cx="348" cy="255" r="7.5" fill="#E7B28C"/>
+              <!-- head + face -->
+              <ellipse cx="300" cy="112" rx="31" ry="35" fill="#E7B28C"/>
+              <circle cx="269" cy="128" r="4.5" fill="none" stroke="#D4A63C" stroke-width="2"/><circle cx="331" cy="128" r="4.5" fill="none" stroke="#D4A63C" stroke-width="2"/>
+              <path d="M280 103 Q288 98 296 102" stroke="#4A2E1A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M304 102 Q312 98 320 103" stroke="#4A2E1A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <g class="eyes">
+                <ellipse cx="288" cy="114" rx="3.4" ry="4.2" fill="#3B2416"/><ellipse cx="312" cy="114" rx="3.4" ry="4.2" fill="#3B2416"/>
+                <circle cx="289.2" cy="112.6" r="1.1" fill="#FFFFFF"/><circle cx="313.2" cy="112.6" r="1.1" fill="#FFFFFF"/>
+              </g>
+              <path d="M300 117 Q297 125 302 127" stroke="#C98C66" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <circle cx="281" cy="126" r="5" fill="#F09A9A" opacity=".3"/><circle cx="319" cy="126" r="5" fill="#F09A9A" opacity=".3"/>
+              <path d="M291 134 Q300 141 309 134" stroke="#B0584F" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              <path fill="#6B4428" d="M266 112 C262 70 338 70 334 112 C326 90 314 80 300 80 C286 80 274 90 266 112 Z"/>
+              <path fill="#7A4E2E" d="M300 78 C280 76 266 90 266 112 C262 135 270 150 260 175 C252 195 262 215 252 234 L270 238 C276 214 268 196 276 176 C284 156 276 132 282 112 C284 96 292 86 300 80 Z"/>
+              <path fill="#7A4E2E" d="M300 78 C320 76 334 90 334 112 C338 135 330 150 340 175 C348 195 338 215 348 234 L330 238 C324 214 332 196 324 176 C316 156 324 132 318 112 C316 96 308 86 300 80 Z"/>
+              <g stroke="#D9AE76" stroke-width="3.2" fill="none" stroke-linecap="round" opacity=".85">
+                <path d="M273 118 C268 145 277 160 267 186 C261 202 268 216 261 230"/><path d="M327 118 C332 145 323 160 333 186 C339 202 332 216 339 230"/>
+              </g>
+            </g>
+          </svg>
+          <span class="sk-avatar-tag">LISE · CORE NODE</span>
+        </div>
+
+        <!-- the 8 cloud nodes (made by skills.js) -->
+        <div class="sk-nodes" id="sk-nodes"></div>
+
+        <!-- floating info panel -->
+        <div class="sk-panel" id="sk-panel" role="dialog" aria-labelledby="sk-panel-title" hidden>
+          <button type="button" class="sk-close" id="sk-close" aria-label="Close">✕</button>
+          <p class="sk-panel-kicker" id="sk-panel-kicker"></p>
+          <h3 class="sk-panel-title" id="sk-panel-title"></h3>
+          <p class="sk-panel-text" id="sk-panel-text"></p>
+          <p class="sk-panel-label">EVIDENCE</p>
+          <ul class="sk-panel-list" id="sk-panel-list"></ul>
+          <p class="sk-panel-label" id="sk-tags-label">KEYWORDS</p>
+          <div class="sk-panel-tags" id="sk-panel-tags"></div>
+        </div>
+      </div>
+
+      <div class="sk-langs">
+        <span class="sk-langs-title">LANGUAGES</span>
+        <span>🇫🇷 French <b>Native</b></span>
+        <span>🇬🇧 English <b>C1</b></span>
+        <span>🇪🇸 Spanish <b>B1</b></span>
+        <span>🇩🇪 German <b>Beginner</b></span>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         05 — MEET LISE (fun facts: travel + horse riding + game)
+         ===================================================== -->
+    <section id="meet" class="page page-meet" data-nav="meet">
+      <p class="page-num">05</p>
+      <h2 class="page-title">Meet Lise</h2>
+      <p class="meet-intro">Beyond my interest in technology, two passions have played a defining role in shaping who I am: discovering the world and horse riding.</p>
+      <div class="meet-facts">
+        <a href="#world" class="meet-fact"><span>🌍</span><b>Passion 1</b><small>A world traveller</small></a>
+        <a href="#play" class="meet-fact"><span>🐎</span><b>Passion 2</b><small>My equestrian journey</small></a>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         05 — MEET LISE · Fun fact #1: travel (interactive globe)
+         ===================================================== -->
+    <section id="world" class="page page-world page-sub" data-nav="meet">
+      <p class="sub-kicker">PASSION 1</p>
+      <h3 class="sub-page-title">A world traveller</h3>
+      <p class="world-intro">7 countries lived in and 21 more explored. <b>Click a dot</b> to see my photos there! Drag the globe to spin it!</p>
+
+      <div class="world-grid">
+        <div class="globe-wrap">
+          <svg id="globe" class="globe" viewBox="0 0 600 600" role="img" aria-label="Interactive globe with the places Lise has lived"></svg>
+          <p class="globe-fallback" id="globe-fallback" hidden>The globe needs an internet connection. Use the list of places instead.</p>
+        </div>
+
+        <aside class="place-card" id="place-card" aria-live="polite">
+          <p class="place-kicker">SELECT A DESTINATION</p>
+          <h3 class="place-title">Where have I been?</h3>
+          <p class="place-text">Pick a dot on the globe, or a place below.</p>
+        </aside>
+      </div>
+
+      <div class="place-list" id="place-list" aria-label="Places"></div>
+    </section>
+
+    <!-- =====================================================
+         05 — MEET LISE · Fun fact #2: horse riding + Cloud Jumping game
+         ===================================================== -->
+    <section id="play" class="page page-play page-sub" data-nav="meet">
+      <p class="sub-kicker">PASSION 2</p>
+      <h3 class="sub-page-title">My equestrian journey</h3>
+      <p class="ride-intro">Twelve years of training, competing and constantly pushing my limits. Horse riding taught me to stay focused under pressure, embrace challenges and keep going when things don't go as planned. Above all, it taught me the value of hard work and determination.</p>
+      <div class="ride-stats">
+        <div class="ride-stat"><i class="ride-emo" aria-hidden="true">🏇</i><b>15+</b><span>years of training</span></div>
+        <div class="ride-stat"><i class="ride-emo" aria-hidden="true">🇫🇷</i><b>3</b><span>French Championships in Jumping<br>2017, 2018 &amp; 2019</span></div>
+        <div class="ride-stat"><i class="ride-emo" aria-hidden="true">🦴</i><b>3</b><span>broken bones</span></div>
+      </div>
+      <div class="ride-gallery">
+        <figure class="ride-ph" style="flex:.789"><img src="images/web/jump3.jpg" alt="Lise jumping at a competition" loading="lazy"></figure>
+        <figure class="ride-ph ride-zoom" style="flex:.75"><img src="images/web/stable.jpg" alt="Lise feeding a grey horse at the stable" loading="lazy"></figure>
+        <figure class="ride-ph" style="flex:.644"><img src="images/web/jump2.jpg" alt="Lise jumping towards the camera" loading="lazy"></figure>
+        <figure class="ride-ph" style="flex:.666"><img src="images/web/jump1.jpg" alt="Lise jumping a fence on a chestnut pony" loading="lazy"></figure>
+      </div>
+      <h3 class="sub-title">Now it is your turn: Cloud Jumping</h3>
+      <p class="play-intro">12 years of show-jumping… now it is your turn. <b>Help me jump over the clouds</b>: they come faster and faster!</p>
+
+      <div class="game-box">
+        <div class="game-hud">
+          <span>SCORE <b id="game-score">00000</b></span>
+          <span>BEST <b id="game-best">00000</b></span>
+        </div>
+        <canvas id="game" class="game" tabindex="0" aria-label="Cloud Jumping game: press Space, tap or click to make Lise and her horse jump over the clouds"></canvas>
+        <p class="game-help"><span>🖱️ Click</span><span>👆 Tap</span><span>⌨️ Space</span> to jump</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         06 — LET'S CONNECT (avatar + email / WhatsApp / call)
+         ===================================================== -->
+    <section id="contact" class="page page-contact" data-nav="contact">
+      <p class="page-num">06</p>
+      <h2 class="page-title">Let's Connect</h2>
+
+      <div class="ct-stage">
+
+        <!-- SPOTLIGHT STAGE: two lamps light me up on my platform -->
+        <div class="ct-spotstage" id="ct-spotstage" aria-hidden="true">
+          <span class="ct-haze"></span>
+          <span class="ct-beam ct-beam-l"></span>
+          <span class="ct-beam ct-beam-r"></span>
+          <span class="ct-lamp ct-lamp-l"><i></i></span>
+          <span class="ct-lamp ct-lamp-r"><i></i></span>
+          <span class="ct-motes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="ct-pool"></span>
+        <!-- me, waving, on the holographic platform -->
+        <div class="ct-avatar" aria-hidden="true">
+          <svg viewBox="150 20 300 400">
+            <defs>
+              <linearGradient id="ct-beam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#8CCDF2" stop-opacity=".35"/><stop offset="1" stop-color="#8CCDF2" stop-opacity="0"/></linearGradient>
+              <radialGradient id="ct-disc" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#BDF0FF" stop-opacity=".85"/><stop offset=".45" stop-color="#3C88C0" stop-opacity=".75"/><stop offset="1" stop-color="#173B60"/></radialGradient>
+            </defs>
+            <path class="sk-beam" d="M196 372 L236 70 L364 70 L404 372 Z" fill="url(#ct-beam)"/>
+            <ellipse cx="300" cy="388" rx="114" ry="26" fill="#0B1930" stroke="#8CCDF2" stroke-opacity=".45" stroke-width="1.5"/>
+            <rect x="186" y="372" width="228" height="16" fill="#123056"/>
+            <ellipse cx="300" cy="372" rx="114" ry="26" fill="url(#ct-disc)" stroke="#8CCDF2" stroke-width="2"/>
+            <g class="sk-rings" fill="none" stroke="#BDF0FF">
+              <ellipse class="sk-ring-dash" cx="300" cy="372" rx="100" ry="22" stroke-width="1.5" stroke-dasharray="5 7" opacity=".7"/>
+              <ellipse cx="300" cy="372" rx="70" ry="15" stroke-width="1.2" opacity=".55"/>
+              <ellipse cx="300" cy="372" rx="38" ry="8" stroke-width="1.2" opacity=".8"/>
+            </g>
+            <ellipse cx="300" cy="369" rx="36" ry="6" fill="#0B1930" opacity=".45"/>
+            <g>
+              <path fill="#6B4428" d="M262 120 C255 68 345 68 338 120 C352 150 342 176 356 206 C368 234 350 252 362 272 C330 286 270 286 238 272 C250 252 232 234 244 206 C258 176 248 150 262 120 Z"/>
+              <path d="M288 258 L285 354" stroke="#3A4250" stroke-width="22" stroke-linecap="round"/>
+              <path d="M312 258 L315 354" stroke="#3A4250" stroke-width="22" stroke-linecap="round"/>
+              <ellipse cx="282" cy="362" rx="14" ry="7" fill="#111111"/><ellipse cx="318" cy="362" rx="14" ry="7" fill="#111111"/>
+              <rect x="290" y="136" width="20" height="26" rx="7" fill="#E7B28C"/>
+              <path d="M256 170 Q300 152 344 170 L352 272 L248 272 Z" fill="#FFFFFF" stroke="#C9DDF0" stroke-width="2"/>
+              <path d="M288 160 L300 186 L312 160 Z" fill="#E7B28C"/>
+              <path d="M284 160 L300 190 L316 160" fill="none" stroke="#C9DDF0" stroke-width="2"/>
+              <path d="M289 160 Q300 182 311 160" fill="none" stroke="#1A1A1A" stroke-width="1.4"/>
+              <path d="M300 187 l-5.5 -5.5 a3.2 3.2 0 0 1 5.5 -4 a3.2 3.2 0 0 1 5.5 4 z" fill="none" stroke="#D4A63C" stroke-width="2.2"/>
+              <!-- left arm down -->
+              <path d="M262 176 Q246 214 252 250" stroke="#C9DDF0" stroke-width="19" stroke-linecap="round" fill="none"/>
+              <path d="M262 176 Q246 214 252 250" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <circle cx="252" cy="255" r="7.5" fill="#E7B28C"/>
+              <!-- right arm up, waving -->
+              <g class="ct-wave">
+                <path d="M338 176 Q368 160 372 122" stroke="#C9DDF0" stroke-width="19" stroke-linecap="round" fill="none"/>
+                <path d="M338 176 Q368 160 372 122" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" fill="none"/>
+                <circle cx="373" cy="114" r="8" fill="#E7B28C"/>
+              </g>
+              <ellipse cx="300" cy="112" rx="31" ry="35" fill="#E7B28C"/>
+              <circle cx="269" cy="128" r="4.5" fill="none" stroke="#D4A63C" stroke-width="2"/><circle cx="331" cy="128" r="4.5" fill="none" stroke="#D4A63C" stroke-width="2"/>
+              <path d="M280 103 Q288 98 296 102" stroke="#4A2E1A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M304 102 Q312 98 320 103" stroke="#4A2E1A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <g class="eyes">
+                <ellipse cx="288" cy="114" rx="3.4" ry="4.2" fill="#3B2416"/><ellipse cx="312" cy="114" rx="3.4" ry="4.2" fill="#3B2416"/>
+                <circle cx="289.2" cy="112.6" r="1.1" fill="#FFFFFF"/><circle cx="313.2" cy="112.6" r="1.1" fill="#FFFFFF"/>
+              </g>
+              <path d="M300 117 Q297 125 302 127" stroke="#C98C66" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <circle cx="281" cy="126" r="5" fill="#F09A9A" opacity=".35"/><circle cx="319" cy="126" r="5" fill="#F09A9A" opacity=".35"/>
+              <path d="M290 133 Q300 143 310 133" stroke="#B0584F" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+              <path fill="#6B4428" d="M266 112 C262 70 338 70 334 112 C326 90 314 80 300 80 C286 80 274 90 266 112 Z"/>
+              <path fill="#7A4E2E" d="M300 78 C280 76 266 90 266 112 C262 135 270 150 260 175 C252 195 262 215 252 234 L270 238 C276 214 268 196 276 176 C284 156 276 132 282 112 C284 96 292 86 300 80 Z"/>
+              <path fill="#7A4E2E" d="M300 78 C320 76 334 90 334 112 C338 135 330 150 340 175 C348 195 338 215 348 234 L330 238 C324 214 332 196 324 176 C316 156 324 132 318 112 C316 96 308 86 300 80 Z"/>
+              <g stroke="#D9AE76" stroke-width="3.2" fill="none" stroke-linecap="round" opacity=".85">
+                <path d="M273 118 C268 145 277 160 267 186 C261 202 268 216 261 230"/><path d="M327 118 C332 145 323 160 333 186 C339 202 332 216 339 230"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+          <span class="ct-reflect"></span>
+        </div>
+
+        <!-- the 3 ways to connect -->
+        <div class="ct-options">
+          <button type="button" class="ct-opt" data-kind="email">
+            <span class="ct-icon" aria-hidden="true">✉️</span>
+            <span class="ct-txt"><b>Send me an email</b><small>Opens your mail app</small></span>
+          </button>
+          <button type="button" class="ct-opt" data-kind="linkedin">
+            <span class="ct-icon" aria-hidden="true">💼</span>
+            <span class="ct-txt"><b>Connect on LinkedIn</b><small>See my profile</small></span>
+          </button>
+          <button type="button" class="ct-opt" data-kind="call">
+            <span class="ct-icon" aria-hidden="true">📅</span>
+            <span class="ct-txt"><b>Book a call</b><small>Pick a time on Calendly</small></span>
+          </button>
+          <button type="button" class="ct-opt" data-kind="cv">
+            <span class="ct-icon" aria-hidden="true">📄</span>
+            <span class="ct-txt"><b>Download my CV</b><small>PDF, one page</small></span>
+          </button>
+        </div>
+        <!-- paper plane that flies away -->
+        <span class="ct-plane" id="ct-plane" aria-hidden="true">✈️</span>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <button type="button" class="replay" id="replay">↺ Replay the Cloud Handshake</button>
+    </footer>
+  </main>
+
+  <script src="script.js?v=39"></script>
+  <!-- globe: d3 (map drawing) + topojson (world shapes) -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js" defer></script>
+  <script src="globe.js?v=39" defer></script>
+  <script src="game.js?v=39" defer></script>
+  <script src="skills.js?v=39" defer></script>
+  <script src="journey.js?v=39" defer></script>
+  <script src="contact.js?v=39" defer></script>
+</body>
+</html>

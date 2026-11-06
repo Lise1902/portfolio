@@ -1,0 +1,15 @@
+# original, full-size photos (the site only uses the resized copies)
+images/world/
+images/journey/
+images/*.jpg
+images/*.JPG
+images/*.jpeg
+images/*.png
+
+# local tool settings
+.claude/
+.kiro/
+CLAUDE.md
+
+# macOS
+.DS_Store
