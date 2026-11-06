@@ -31,9 +31,11 @@ Other interactive parts:
 ## How it is built and hosted on AWS
 
 - **Code:** plain HTML, CSS and JavaScript. No framework, no build step.
-- **Hosting:** **AWS Amplify Hosting** (static web app), connected to this GitHub repository.
-  Every push to the main branch redeploys the site automatically.
-- **Delivery:** Amplify serves the site over HTTPS through the Amazon CloudFront global network.
+- **Live site:** https://main.dmaoai5lkpddo.amplifyapp.com
+- **Hosting:** **AWS Amplify Hosting** (static web app `lise-bousquet-portfolio`, branch `main`).
+- **Deploying:** each new version is packed as a zip from this repository and published with the AWS CLI
+  (`aws amplify create-deployment` → upload → `aws amplify start-deployment`).
+- **Delivery:** Amplify serves the site over HTTPS through its global content delivery network.
 - **Region:** eu-north-1 (Stockholm).
 - **Tools:** built with Claude Code, an AI coding agent, connected to AWS through the AWS MCP Server and the AWS CLI.
 
