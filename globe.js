@@ -95,7 +95,7 @@ const TRAVEL_ISO = ["188", "376", "504", "690", "702", "840", "764", "620", "400
         <span class="gal-count"></span>
       </div>
       ${many ? `<div class="gal-dots">${gallery.map((_, n) => `<button type="button" aria-label="Photo ${n + 1}"></button>`).join("")}</div>` : ""}` : `
-      <div class="gal-empty"><span class="gal-empty-flag">${p.flag}</span><b>Photos coming soon</b><small>${p.name}</small></div>`}`;
+      <div class="gal-empty"><span class="gal-empty-flag">${p.flag}</span><b>${p.name}</b></div>`}`;
 
     if (gallery.length) {
       const gal = card.querySelector(".gallery");
