@@ -319,7 +319,11 @@ function updateActivePage() {
     a.classList.toggle("active", on);
     if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     // on phones the menu scrolls sideways: keep the active item in view
-    if (on && a.scrollIntoView && window.innerWidth < 1100) a.scrollIntoView({ block: "nearest", inline: "center" });
+    // (only the menu bar moves sideways: scrollIntoView made the whole page jump on iPhone)
+    if (on && window.innerWidth < 1100) {
+      const bar = a.closest(".menu-links");
+      if (bar && bar.scrollWidth > bar.clientWidth) bar.scrollTo({ left: bar.scrollLeft + (a.getBoundingClientRect().left - bar.getBoundingClientRect().left) - (bar.clientWidth - a.offsetWidth) / 2, behavior: "smooth" });
+    }
   });
 }
 let pageTick = false;

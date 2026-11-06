@@ -1727,6 +1727,22 @@ video.gal-media { background: #000; }
   .secure { display: none; }
 }
 
+/* =====================================================
+   Phones and tablets: lighter effects so scrolling stays smooth
+   (blur, glass and glow filters are very slow on phone screens)
+   ===================================================== */
+@media (max-width: 900px), (hover: none) {
+  *, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  .menu { background: #0B1930; }
+  .mini-svg, .lise-guide .mini-svg, .tour-host .mini-svg,
+  .ct-avatar svg, .ct-spotstage .ct-avatar svg, .scene { filter: none !important; }
+  .lise-guide { transition: opacity .4s ease; will-change: transform; }
+  .guide-host { transition: none; }
+  .ct-beam, .ct-pool, .ct-reflect, .ct-glow, .link-glow { filter: none !important; }
+  .ct-beam { mix-blend-mode: normal; }
+  .ct-motes, .ct-haze { display: none; }
+}
+
 /* People who turn off animations */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
