@@ -37,7 +37,7 @@ const PLACES = [
   { "id": "switzerland", "name": "Switzerland", "country": "Switzerland", "flag": "🇨🇭", "coords": [ 7.4474, 46.948 ], "kind": "travel", "photos": 3, "when": "Trip", "text": "Mountains, lakes and fresh Alpine air." },
   { "id": "tanzania", "name": "Tanzania", "country": "Tanzania", "flag": "🇹🇿", "coords": [ 34.8888, -6.369 ], "kind": "travel", "photos": 0, "when": "Trip", "text": "Wild landscapes and unforgettable nature." },
   { "id": "thailand", "name": "Thailand", "country": "Thailand", "flag": "🇹🇭", "coords": [ 100.5018, 13.7563 ], "kind": "travel", "photos": 7, "when": "Trip", "videos": 1, "text": "Temples, islands and street food." },
-  { "id": "newyork", "name": "United States", "country": "United States", "flag": "🇺🇸", "coords": [ -74.006, 40.7128 ], "kind": "travel", "photos": 8, "when": "Trip", "text": "New York, the city that never sleeps: exploring Manhattan." }
+  { "id": "newyork", "name": "United States", "country": "United States", "flag": "🇺🇸", "coords": [ -74.006, 40.7128 ], "kind": "travel", "photos": 9, "when": "Trip", "text": "New York, the city that never sleeps: exploring Manhattan." }
 ];
 
 // ISO codes of countries to colour on the globe
